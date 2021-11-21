@@ -29,21 +29,17 @@ class ProductRepositoryTest {
     @Test
     void shouldRemoveById() {
         productRepository.removeById(1);
-        Product[] expected = {second,third,fourth};
+        Product[] expected = {second, third, fourth};
         Product[] actual = productRepository.findAll();
-        assertArrayEquals(expected,actual);
+        assertArrayEquals(expected, actual);
 
     }
 
     @Test
     void shouldNotFoundException() {
-        try {
+        assertThrows(NotFoundException.class, () -> {
             productRepository.removeById(6);
-        } catch (NotFoundException e) {
-            return;
-        } catch (Exception e) {
-            fail();
-        }
+        });
 
     }
 
